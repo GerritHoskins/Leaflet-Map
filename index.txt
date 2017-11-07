@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My First Leaflet Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+  <style>
+	#mapContainer {
+		position: absolute;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+	}
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+	<div id="mapContainer"></div>
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script>
+		var map = L.map('mapContainer').setView([39.9612, -82.9988], 12);
+		
+		var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+		
+		L.marker([39.9973, -83.0424]).addTo(map)
+		.bindPopup('Rev1 Ventures.<br> 1275 Kinnear Rd.<br> Columbus, OH')
+		.openPopup();
+		
+		L.marker([40.051795, -83.043334]).addTo(map)
+		.bindPopup('Nick\'s Home<br> 4515 W DeSantis Ct<br> Columbus, OH')
+		.openPopup();
+		
+		var circle = L.circle([40.051795, -83.043334], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 3200
+		}).addTo(map)
+		.bindPopup('roughly 2 miles')
+		.openPopup;
+		
+	</script>
+</body>
+</html>

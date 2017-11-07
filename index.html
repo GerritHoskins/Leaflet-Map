@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Columbus Test Map</title>
+  <link rel="stylesheet" href="leaflet.css" />
+  <link rel="stylesheet" href="Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
+</head>
+
+<body>
+	<div id="mapContainer">	</div>
+	<script src="C:/Users/nsittinger/Documents/Leaflet/jquery.js"></script>
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="script_blank.js"></script>
+	<script src="C:/Users/nsittinger/Documents//Leaflet/education_facilities.geojson"></script>
+	<script src="Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+	<script>
+		var map = L.map('mapContainer').setView([39.9612, -82.9988], 12);
+		
+		var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+		}).addTo(map);
+		
+
+		
+		L.marker([39.9973, -83.0424]).addTo(map)
+		.bindPopup('Rev1 Ventures.<br> 1275 Kinnear Rd.<br> Columbus, OH')
+		.openPopup();
+		
+		L.marker([40.051795, -83.043334]).addTo(map)
+		.bindPopup('4515 W DeSantis Ct<br> Columbus, OH')
+		.openPopup();
+		
+		var circle = L.circle([40.051795, -83.043334], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 3200
+		}).addTo(map)
+		.bindPopup('2 miles')
+		.openPopup;
+		
+		L.control.scale({maxWidth:240, metric:false, imperial:true, position: 'bottomleft'}).addTo(map);
+		
+		L.control.polylineMeasure(options).addTo(map);
+		
+		
+
+	</script>
+</body>
+</html>
